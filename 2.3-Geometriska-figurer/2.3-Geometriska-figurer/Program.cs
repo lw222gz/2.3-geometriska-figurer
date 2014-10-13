@@ -16,6 +16,7 @@ namespace _2._3_Geometriska_figurer
 
                     ViewMenu();
                     int ChoiceValue;
+                    Console.Write("Ange ditt menyval [0-2]:");
                     string choice = Console.ReadLine();
                     try
                     {
@@ -61,16 +62,15 @@ namespace _2._3_Geometriska_figurer
                 case ShapeType.Ellipse: Console.WriteLine("=                    Ellips                       =");
                                         break;
 
-                case ShapeType.Rectangle: Console.WriteLine("=                 Rectangel                       =");
+                case ShapeType.Rectangle: Console.WriteLine("=                  Rektangel                      =");
                                           break;
             }
             Console.WriteLine("===================================================");
             Console.ResetColor();
-            Console.WriteLine();
-
 
             double width = ReadDoubleGreaterThanZero("Ange bredd:");
             double lenght = ReadDoubleGreaterThanZero("Ange längd:");
+            Console.WriteLine();
 
             if ( shapeType == ShapeType.Ellipse )
             {
@@ -87,11 +87,11 @@ namespace _2._3_Geometriska_figurer
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("===================================================");
             Console.WriteLine("=                                                 =");
-            Console.WriteLine("=                Geometriska figurer              =");
+            Console.WriteLine("=               Geometriska figurer               =");
             Console.WriteLine("=                                                 =");
             Console.WriteLine("===================================================");
             Console.ResetColor();
-            Console.WriteLine("\n 0.Avsluta.\n\n 1. Ellips\n\n 2. Rektangel.");
+            Console.WriteLine("\n 0.Avsluta.\n\n 1. Ellips\n\n 2. Rektangel.\n");
             Console.WriteLine("===================================================");
         }
 
