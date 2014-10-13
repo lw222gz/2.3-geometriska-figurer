@@ -8,7 +8,6 @@ namespace _2._3_Geometriska_figurer
 {
     public class Ellipse : Shape
     {
-        
         public override double Area
         {
             get { return Math.PI * (Length / 2) * (Width / 2); }

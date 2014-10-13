@@ -10,57 +10,79 @@ namespace _2._3_Geometriska_figurer
     {            
         static void Main(string[] args)
             {
-
-                do
+                do // startar upp Viewmenu sen gör en switch sats för att gå vidare.
                 {
-                    int ChoiceValue;
-                    ViewMenu();
-                    string choice = Console.ReadLine();
+                    Console.Clear();
 
+                    ViewMenu();
+                    int ChoiceValue;
+                    string choice = Console.ReadLine();
                     try
                     {
                         ChoiceValue = int.Parse(choice);
+
+                        switch (ChoiceValue)
+                        {
+                            case 0: return;
+
+                            case 1: ViewShapeDetail(CreateShape(ShapeType.Ellipse));
+                                break;
+                            case 2: ViewShapeDetail(CreateShape(ShapeType.Rectangle));
+                                break;
+                            default:
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.WriteLine("FEL! Du måste ange ett nummer emellan 0 och 2.");
+                                Console.ResetColor();
+                                break;
+                        }
                     }
                     catch
                     {
-                        throw new ArgumentException();
-                    }
-
-                    switch (ChoiceValue)
-                    {
-                        case 0: return;
-
-                        case 1: // ska kalla på create shape för en ellips
-                            break;
-                        case 2: // ska kalla på Create shape för en rektangel
-                            break;
-                        default: 
-                            Console.WriteLine("FEL! Du måste ange ett nummer emellan 0 och 2.");
-                            break;
-                    }
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Du måste ange ett heltal!");
+                        Console.ResetColor();
+                    } 
 
 
                     Console.BackgroundColor = ConsoleColor.Blue;
                     Console.WriteLine("Tryck valfri tangent för att börja om - ESC avslutar.");
+                    Console.ResetColor();
 
                 } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
-                // ska anropa metoden ViewMenu för att visa en meny.
-                // om användaren inte väljer att avsluta applikationen så ska metoden Createshape anropas som ska skapa och returnera en referens 
-                // till ett Ellips eller rectangle objekt.  Referens till objektet används sedan vid anrop av ViewDetail som presenterar figurens detaljet.
-                // Då en beräkning är gjord så ska menyn visas igen. 
-
-                // de ska ange ett tal emellan 0-2 då olika valmöjligheter finns för varje, om talt inte är inom det intervallet så ska ett felmedelande visas
-                // samt så ska användaren få en ny chans vid meny alternativ genom att trycka valfri tangent.
             }
-        private static Shape CreateShape(ShapeType shapeType)
+        private static Shape CreateShape(ShapeType shapeType) // skapar ett objekt, samt skriver ut ellips / rektangel raden. ska kalla på ReadDoubleGreaterThanZero för att läsa in värden
         {
-            throw new ArgumentException();
-            // Ska använda något some heter Enum?, läs om det.
-            // samt ska retunera en referens 
+            Console.WriteLine();
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("===================================================");
+            switch (shapeType)
+            {
+                case ShapeType.Ellipse: Console.WriteLine("=                    Ellips                       =");
+                                        break;
+
+                case ShapeType.Rectangle: Console.WriteLine("=                 Rectangel                       =");
+                                          break;
+            }
+            Console.WriteLine("===================================================");
+            Console.ResetColor();
+            Console.WriteLine();
+
+
+            double width = ReadDoubleGreaterThanZero("Ange bredd:");
+            double lenght = ReadDoubleGreaterThanZero("Ange längd:");
+
+            if ( shapeType == ShapeType.Ellipse )
+            {
+                Ellipse myEllipse = new Ellipse(lenght, width);
+                return myEllipse;
+            }
+            Rectangle myRectangle = new Rectangle(lenght, width);
+            return myRectangle;
+
         }
 
-        private static void ViewMenu()
+        private static void ViewMenu() // Visar upp en meny
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("===================================================");
@@ -69,11 +91,12 @@ namespace _2._3_Geometriska_figurer
             Console.WriteLine("=                                                 =");
             Console.WriteLine("===================================================");
             Console.ResetColor();
-            Console.WriteLine("\n 0.Avsluta.\n1. Ellips\n 2. Rektangel.");
+            Console.WriteLine("\n 0.Avsluta.\n\n 1. Ellips\n\n 2. Rektangel.");
             Console.WriteLine("===================================================");
         }
 
-        private static double ReadDoubleGreaterThanZero(string prompt) //promten = ange bredd eller ange längd
+        private static double ReadDoubleGreaterThanZero(string prompt) //läser in tal
+
         {
             double value;
             while (true)
@@ -89,7 +112,9 @@ namespace _2._3_Geometriska_figurer
                     }
                     else
                     {
+                        Console.BackgroundColor = ConsoleColor.Red;
                         Console.WriteLine("Du måste ange ett tal högre än 0.");
+                        Console.ResetColor();
                     }
                 }
                 catch
@@ -103,20 +128,16 @@ namespace _2._3_Geometriska_figurer
             
         }
     
-        private static void ViewShapeDetail(/*sicka ner objektet som skapas för klassen*/)
+        private static void ViewShapeDetail(Shape shape) // ska visa upp alla detaljet om formen
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("===================================================");
             Console.WriteLine("=                    Detaljer                     =");
             Console.WriteLine("===================================================");
             Console.ResetColor();
-            Console.WriteLine(/*Här ska ToString metoden i Shape kallsen användas för att presentera alla vrden*/);
+            Console.WriteLine(shape.ToString());
             Console.WriteLine();
             Console.WriteLine("===================================================");
-        }
-    
-    
-    
+        }   
     }
-
 }

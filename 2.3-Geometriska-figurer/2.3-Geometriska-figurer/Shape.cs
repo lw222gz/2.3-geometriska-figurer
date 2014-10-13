@@ -20,7 +20,7 @@ namespace _2._3_Geometriska_figurer
                 {
                     throw new ArgumentException();
                 }
-                value = _length;
+                _length = value;
             }
         }
 
@@ -33,7 +33,7 @@ namespace _2._3_Geometriska_figurer
                 {
                     throw new ArgumentException();
                 }
-                value = _width;
+                _width = value;
             }
         }
 
@@ -56,9 +56,7 @@ namespace _2._3_Geometriska_figurer
 
         public override string ToString()
         {
-            return string.Format("Längd:{0,9} \n Bredd:{1,9}\n Omkrets:{2,9}\n Area:{3,9}", Length, Width, Perimeter, Area);        
+            return string.Format(" Längd  :{0,12:f2} \n Bredd  :{1,12:f2}\n Omkrets:{2,12:f2}\n Area   :{3,12:f2}", Length, Width, Perimeter, Area);        
         }
-
-
     }
 }
