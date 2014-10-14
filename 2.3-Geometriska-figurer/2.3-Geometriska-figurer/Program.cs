@@ -16,7 +16,7 @@ namespace _2._3_Geometriska_figurer
 
                     ViewMenu();
                     int ChoiceValue;
-                    Console.Write("Ange ditt menyval [0-2]:");
+                    Console.Write(" Ange ditt menyval [0-2]:");
                     string choice = Console.ReadLine();
                     try
                     {
@@ -32,7 +32,7 @@ namespace _2._3_Geometriska_figurer
                                 break;
                             default:
                                 Console.BackgroundColor = ConsoleColor.Red;
-                                Console.WriteLine("FEL! Du måste ange ett nummer emellan 0 och 2.");
+                                Console.WriteLine("\nFEL! Du måste ange ett nummer emellan 0 och 2.");
                                 Console.ResetColor();
                                 break;
                         }
@@ -40,13 +40,11 @@ namespace _2._3_Geometriska_figurer
                     catch
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Du måste ange ett heltal!");
+                        Console.WriteLine("\nFEL! {0} är inte i önskat format, var vänlig och nämna ett tal emellan 0 och 2.", choice);
                         Console.ResetColor();
-                    } 
-
-
+                    }
                     Console.BackgroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("Tryck valfri tangent för att börja om - ESC avslutar.");
+                    Console.WriteLine("\nTryck valfri tangent för att börja om - ESC avslutar.");
                     Console.ResetColor();
 
                 } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
@@ -68,8 +66,8 @@ namespace _2._3_Geometriska_figurer
             Console.WriteLine("===================================================");
             Console.ResetColor();
 
-            double width = ReadDoubleGreaterThanZero("Ange bredd:");
-            double lenght = ReadDoubleGreaterThanZero("Ange längd:");
+            double width = ReadDoubleGreaterThanZero(" \n Ange bredd:");
+            double lenght = ReadDoubleGreaterThanZero(" Ange längd:");
             Console.WriteLine();
 
             if ( shapeType == ShapeType.Ellipse )
@@ -120,7 +118,7 @@ namespace _2._3_Geometriska_figurer
                 catch
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
-                    Console.WriteLine("FEL FEL FEL! {0} är inte i önskat format, du måste ange ett tal större än noll.", input);
+                    Console.WriteLine("FEL! {0} är inte i önskat format, du måste ange ett tal större än noll.", input);
                     Console.ResetColor();
                 }
                 
